@@ -27,6 +27,9 @@
         android:layout_marginStart="100dp"
         android:layout_marginTop="15dp"
         android:text="A"
+        android:textSize="35dp"
+        android:height="48dp"
+        android:width="48dp"
         android:textAlignment="center"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView1" />
@@ -38,6 +41,9 @@
         android:layout_marginStart="100dp"
         android:layout_marginTop="15dp"
         android:text="B"
+        android:textSize="35dp"
+        android:height="48dp"
+        android:width="48dp"
         android:textAlignment="center"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewA" />
@@ -49,9 +55,45 @@
         android:layout_marginStart="100dp"
         android:layout_marginTop="15dp"
         android:text="C"
+        android:textSize="35dp"
+        android:height="48dp"
+        android:width="48dp"
         android:textAlignment="center"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewB" />
+
+    <EditText
+        android:id="@+id/editTextA"
+        android:layout_width="150dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="100dp"
+        android:inputType="numberDecimal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView1"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <EditText
+        android:id="@+id/editTextB"
+        android:layout_width="150dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="100dp"
+        android:inputType="numberDecimal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextA"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <EditText
+        android:id="@+id/editTextC"
+        android:layout_width="150dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="100dp"
+        android:inputType="numberDecimal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextB"
+        tools:ignore="SpeakableTextPresentCheck" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
