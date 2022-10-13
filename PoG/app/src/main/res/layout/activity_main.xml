@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:text="Enter the coefficients of equation:\nAx\u00B2 + Bx + C = 0"
         android:textAlignment="center"
+        android:textSize="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -108,10 +109,10 @@
 
     <TextView
         android:id="@+id/textViewResult"
-        android:layout_width="217dp"
-        android:layout_height="156dp"
-        android:layout_marginTop="32dp"
-        android:text="Results: "
+        android:layout_width="366dp"
+        android:layout_height="155dp"
+        android:layout_marginTop="25dp"
+        android:text=""
         android:textAlignment="center"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
