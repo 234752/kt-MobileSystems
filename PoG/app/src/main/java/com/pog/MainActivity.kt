@@ -17,10 +17,15 @@ class MainActivity : AppCompatActivity() {
         result.text = ""
         var button = findViewById<Button>(R.id.button)
         button.setOnClickListener {
-            val a : Double = findViewById<EditText>(R.id.editTextA).text.toString().toDouble()
-            val b : Double = findViewById<EditText>(R.id.editTextB).text.toString().toDouble()
-            val c : Double = findViewById<EditText>(R.id.editTextC).text.toString().toDouble()
-            result.text = calculateResult(a, b, c)
+            try {
+                val a : Double = findViewById<EditText>(R.id.editTextA).text.toString().toDouble()
+                val b : Double = findViewById<EditText>(R.id.editTextB).text.toString().toDouble()
+                val c : Double = findViewById<EditText>(R.id.editTextC).text.toString().toDouble()
+                result.text = calculateResult(a, b, c)
+            } catch (e : Exception) {
+                result.text = "Invalid data, try again"
+            }
+
         }
     }
 
