@@ -8,10 +8,10 @@ import android.widget.TextView
 import java.lang.Math.sqrt
 import kotlin.math.round
 
-class MainActivity : AppCompatActivity() {
+class EquationViewModel : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.equation_view)
 
         var result = findViewById<TextView>(R.id.textViewResult)
         result.text = ""
