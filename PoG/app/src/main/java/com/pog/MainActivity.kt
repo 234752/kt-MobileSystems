@@ -25,7 +25,6 @@ class MainActivity : AppCompatActivity() {
             } catch (e : Exception) {
                 result.text = "Invalid data, try again"
             }
-
         }
     }
 
@@ -40,12 +39,16 @@ class MainActivity : AppCompatActivity() {
         if(d > 0) {
             var x1 = round((sqrt(d) - b)/(2*a)*100)/100
             var x2 = round((sqrt(d) + b)/(2*a)*100)/100
-            return "Results: \nx\u2081 = $x1 \nx\u2082 = $x2"
+            return "Results: " +
+                    "\ndiscriminant = $d" +
+                    "\nx\u2081 = $x1 \nx\u2082 = $x2"
         } else if(d == 0.0) {
             var x0 = round(-b/(2*a)*100)/100
-            return "Result: \nx\u2080 = $x0"
+            return "Result: " +
+                    "\ndiscriminant = $d" +
+                    "\nx\u2080 = $x0"
         } else {
-            return "Discriminant smaller than 0, no results in this case"
+            return "Discriminant = $d < 0, no results in this case"
         }
     }
 }
