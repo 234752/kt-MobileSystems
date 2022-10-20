@@ -36,7 +36,7 @@ class DiceViewModel : Activity(), SensorEventListener {
 
         sensorManager = getSystemService(SENSOR_SERVICE) as SensorManager
         tiltSensor = sensorManager!!.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
-            }
+    }
 
     private fun getRandomNumber(): Int {
         return Random.nextInt(1, 7)
@@ -58,16 +58,16 @@ class DiceViewModel : Activity(), SensorEventListener {
     }
 
     override fun onSensorChanged(event: SensorEvent) {
-        val alpha = 0.8.toFloat()
-        val gravityValues = FloatArray(3)
-        gravityValues[0] = alpha * gravityValues[0] + (1 - alpha) * event.values[0]
-        gravityValues[1] = alpha * gravityValues[1] + (1 - alpha) * event.values[1]
-        gravityValues[2] = alpha * gravityValues[2] + (1 - alpha) * event.values[2]
-        val linearAcceleration = FloatArray(3)
-        linearAcceleration[0] = event.values[0] - gravityValues[0]
-        linearAcceleration[1] = event.values[1] - gravityValues[1]
-        linearAcceleration[2] = event.values[2] - gravityValues[2]
-        if(linearAcceleration[0] > 1 || linearAcceleration[1] > 10 || linearAcceleration[2] > 1) {
+//        val alpha = 0.8.toFloat()
+//        val gravityValues = FloatArray(3)
+//        gravityValues[0] = alpha * gravityValues[0] + (1 - alpha) * event.values[0]
+//        gravityValues[1] = alpha * gravityValues[1] + (1 - alpha) * event.values[1]
+//        gravityValues[2] = alpha * gravityValues[2] + (1 - alpha) * event.values[2]
+//        val linearAcceleration = FloatArray(3)
+//        linearAcceleration[0] = event.values[0] - gravityValues[0]
+//        linearAcceleration[1] = event.values[1] - gravityValues[1]
+//        linearAcceleration[2] = event.values[2] - gravityValues[2]
+        if(event.values[0] > 1 || event.values[1] > 10 || event.values[2] > 1) {
             val result = findViewById<TextView>(R.id.textView)
             if(choice!!.checkedRadioButtonId == buttonOne!!.id) {
                 result.text = getRandomNumber().toString()
