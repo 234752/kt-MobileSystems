@@ -15,13 +15,14 @@
         android:padding="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Ile kostek wariacie?"
+            android:text="How many dices do You want to roll?"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -41,8 +42,7 @@
             android:id="@+id/three"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Three Dices"
-            />
+            android:text="Three Dices" />
 
     </RadioGroup>
 
@@ -50,13 +50,44 @@
         android:id="@+id/textView"
         android:layout_width="366dp"
         android:layout_height="155dp"
-        android:layout_marginBottom="252dp"
+        android:layout_marginBottom="360dp"
         android:text=""
         android:textAlignment="center"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.355"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/image1"
+        android:layout_width="117dp"
+        android:layout_height="128dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="208dp"
+        android:src="@drawable/one"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/image2"
+        android:layout_width="117dp"
+        android:layout_height="128dp"
+        android:layout_marginBottom="208dp"
+        android:src="@drawable/two"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/image3"
+        android:layout_width="117dp"
+        android:layout_height="128dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="208dp"
+        android:src="@drawable/three"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

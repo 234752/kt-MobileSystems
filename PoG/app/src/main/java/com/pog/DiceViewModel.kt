@@ -21,17 +21,21 @@ class DiceViewModel : Activity(), SensorEventListener {
     private var buttonOne : Button ?= null
     private var buttonTwo : Button ?= null
     private var buttonThree : Button ?= null
+    private var diceOne : ImageView ?= null
+    private var diceTwo : ImageView ?= null
+    private var diceThree : ImageView ?= null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.dice_view)
 
-
         choice = findViewById<RadioGroup>(R.id.radio_group)
-        result = findViewById<TextView>(R.id.textView)
         buttonOne = findViewById<RadioButton>(R.id.one)
         buttonTwo = findViewById<RadioButton>(R.id.two)
         buttonThree = findViewById<RadioButton>(R.id.three)
+        diceOne = findViewById<ImageView>(R.id.image1)
+        diceTwo = findViewById<ImageView>(R.id.image2)
+        diceThree = findViewById<ImageView>(R.id.image3)
         choice!!.check(buttonOne!!.id)
 
         sensorManager = getSystemService(SENSOR_SERVICE) as SensorManager
@@ -57,6 +61,19 @@ class DiceViewModel : Activity(), SensorEventListener {
         // Do nothing
     }
 
+    fun displayNumber(dice : ImageView, number : Int) {
+        val image = when(number) {
+            1->R.drawable.one
+            2->R.drawable.two
+            3->R.drawable.three
+            4->R.drawable.four
+            5->R.drawable.five
+            6->R.drawable.six
+            else -> R.drawable.empty
+        }
+        dice.setImageResource(image)
+    }
+
     override fun onSensorChanged(event: SensorEvent) {
 //        val alpha = 0.8.toFloat()
 //        val gravityValues = FloatArray(3)
@@ -69,12 +86,22 @@ class DiceViewModel : Activity(), SensorEventListener {
 //        linearAcceleration[2] = event.values[2] - gravityValues[2]
         if(event.values[0] > 1 || event.values[1] > 10 || event.values[2] > 1) {
             val result = findViewById<TextView>(R.id.textView)
-            if(choice!!.checkedRadioButtonId == buttonOne!!.id) {
-                result.text = getRandomNumber().toString()
-            } else if(choice!!.checkedRadioButtonId == buttonTwo!!.id) {
-                result.text = "${getRandomNumber()} \n${getRandomNumber()}"
-            } else {
-                result.text = "${getRandomNumber()} \n${getRandomNumber()} \n${getRandomNumber()}"
+            when (choice!!.checkedRadioButtonId) {
+                buttonOne!!.id -> {
+                    displayNumber(diceOne!!, getRandomNumber())
+                    displayNumber(diceTwo!!, 0)
+                    displayNumber(diceThree!!, 0)
+                }
+                buttonTwo!!.id -> {
+                    displayNumber(diceOne!!, getRandomNumber())
+                    displayNumber(diceTwo!!, getRandomNumber())
+                    displayNumber(diceThree!!, 0)
+                }
+                else -> {
+                    displayNumber(diceOne!!, getRandomNumber())
+                    displayNumber(diceTwo!!, getRandomNumber())
+                    displayNumber(diceThree!!, getRandomNumber())
+                }
             }
         }
     }
