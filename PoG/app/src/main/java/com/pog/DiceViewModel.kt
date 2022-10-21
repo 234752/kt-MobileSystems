@@ -84,7 +84,7 @@ class DiceViewModel : Activity(), SensorEventListener {
 //        linearAcceleration[0] = event.values[0] - gravityValues[0]
 //        linearAcceleration[1] = event.values[1] - gravityValues[1]
 //        linearAcceleration[2] = event.values[2] - gravityValues[2]
-        if(event.values[0] > 1 || event.values[1] > 10 || event.values[2] > 1) {
+        if(event.values[0] > 10 || event.values[1] > 10 || event.values[2] > 10) {
             val result = findViewById<TextView>(R.id.textView)
             when (choice!!.checkedRadioButtonId) {
                 buttonOne!!.id -> {
