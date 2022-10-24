@@ -46,48 +46,36 @@
 
     </RadioGroup>
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="366dp"
-        android:layout_height="155dp"
-        android:layout_marginBottom="360dp"
-        android:text=""
-        android:textAlignment="center"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.355"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <ImageView
         android:id="@+id/image1"
-        android:layout_width="117dp"
-        android:layout_height="128dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="208dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="25dp"
         android:src="@drawable/one"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radio_group" />
 
     <ImageView
         android:id="@+id/image2"
-        android:layout_width="117dp"
-        android:layout_height="128dp"
-        android:layout_marginBottom="208dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="25dp"
         android:src="@drawable/two"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/image1" />
 
     <ImageView
         android:id="@+id/image3"
-        android:layout_width="117dp"
-        android:layout_height="128dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="208dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="25dp"
         android:src="@drawable/three"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/image2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
