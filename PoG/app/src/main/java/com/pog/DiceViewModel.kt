@@ -1,6 +1,5 @@
 package com.pog
 
-import android.R.attr.gravity
 import android.app.Activity
 import android.hardware.Sensor
 import android.hardware.SensorEvent
@@ -8,7 +7,6 @@ import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.os.Bundle
 import android.widget.*
-import androidx.appcompat.app.AppCompatActivity
 import kotlin.random.Random
 
 
@@ -36,7 +34,7 @@ class DiceViewModel : Activity(), SensorEventListener {
         diceOne = findViewById<ImageView>(R.id.image1)
         diceTwo = findViewById<ImageView>(R.id.image2)
         diceThree = findViewById<ImageView>(R.id.image3)
-        choice!!.check(buttonOne!!.id)
+        choice!!.check(buttonThree!!.id)
 
         sensorManager = getSystemService(SENSOR_SERVICE) as SensorManager
         tiltSensor = sensorManager!!.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
@@ -84,8 +82,7 @@ class DiceViewModel : Activity(), SensorEventListener {
 //        linearAcceleration[0] = event.values[0] - gravityValues[0]
 //        linearAcceleration[1] = event.values[1] - gravityValues[1]
 //        linearAcceleration[2] = event.values[2] - gravityValues[2]
-        if(event.values[0] > 10 || event.values[1] > 10 || event.values[2] > 10) {
-            val result = findViewById<TextView>(R.id.textView)
+        if(event.values[0] > 12 || event.values[1] > 12 || event.values[2] > 12) {
             when (choice!!.checkedRadioButtonId) {
                 buttonOne!!.id -> {
                     displayNumber(diceOne!!, getRandomNumber())
