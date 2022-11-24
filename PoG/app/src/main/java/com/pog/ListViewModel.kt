@@ -19,8 +19,8 @@ class ListViewModel : AppCompatActivity() {
         listView = findViewById<View>(R.id.itemListView) as ListView
         itemList = ArrayList<ListItem>()
         itemList!!.add(ListItem("it1", 1))
-        itemList!!.add(ListItem("it2", 2))
-        itemList!!.add(ListItem("it3", 3))
+        itemList!!.add(ListItem("it2", 26564))
+        itemList!!.add(ListItem("it3", 359))
         itemsTable = ItemsTable(itemList!!, applicationContext)
         listView.adapter = itemsTable
         listView.onItemClickListener = OnItemClickListener { _, _, position, _ ->

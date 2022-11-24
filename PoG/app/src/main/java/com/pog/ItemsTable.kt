@@ -10,9 +10,10 @@ import android.widget.TextView
 import java.util.*
 
 class ItemsTable(val ItemsList: ArrayList<ListItem>, mContext: Context) :
-    ArrayAdapter<ListItem>(mContext, R.layout.items_table_view, ItemsList) {
+    ArrayAdapter<ListItem>(mContext, R.layout.table_row_view, ItemsList) {
     private class Row {
         lateinit var rowTextView: TextView
+        lateinit var rowAmountView: TextView
         lateinit var rowCheckBox: CheckBox
     }
     override fun getView(position: Int, inputView: View?, parent: ViewGroup): View {
@@ -21,8 +22,9 @@ class ItemsTable(val ItemsList: ArrayList<ListItem>, mContext: Context) :
         val result: View
         if (convertView == null) {
             row = Row()
-            convertView = LayoutInflater.from(parent.context).inflate(R.layout.items_table_view, parent, false)
+            convertView = LayoutInflater.from(parent.context).inflate(R.layout.table_row_view, parent, false)
             row.rowTextView = convertView.findViewById(R.id.rowTextView)
+            row.rowAmountView = convertView.findViewById(R.id.rowAmountView)
             row.rowCheckBox = convertView.findViewById(R.id.rowCheckBox)
             result = convertView
             convertView.tag = row
@@ -32,6 +34,7 @@ class ItemsTable(val ItemsList: ArrayList<ListItem>, mContext: Context) :
         }
         val item: ListItem = ItemsList[position]
         row.rowTextView.text = item.Name
+        row.rowAmountView.text = item.Amount.toString()
         row.rowCheckBox.isChecked = item.IsBought
         return result
     }

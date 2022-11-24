@@ -5,8 +5,20 @@
     android:layout_height="match_parent"
     android:padding="4dp"
     tools:context=".ListViewModel">
+
     <ListView
         android:id="@+id/itemListView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_width="wrap_content"
+        android:layout_height="700dp" >
+    </ListView>
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        android:layout_alignRight="@id/itemListView"
+        android:layout_alignBottom="@id/itemListView"
+        android:layout_marginTop="100dp"
+        />
 </RelativeLayout>
