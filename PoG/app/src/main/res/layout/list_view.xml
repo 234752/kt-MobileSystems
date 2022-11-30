@@ -9,7 +9,7 @@
 
     <ListView
         android:id="@+id/itemListView"
-        android:layout_width="409dp"
+        android:layout_width="382dp"
         android:layout_height="683dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

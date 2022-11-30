@@ -34,7 +34,7 @@ class ListViewModel : AppCompatActivity() {
 
         addButton = findViewById<Button>(R.id.addButton) as Button
         addButton.setOnClickListener {
-            itemList!!.add(ListItem("hmm", 543))
+            itemList!!.add(ListItem("new item", 123))
             itemsTable.notifyDataSetChanged()
         }
 
