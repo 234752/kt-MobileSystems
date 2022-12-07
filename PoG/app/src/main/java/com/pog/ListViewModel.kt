@@ -21,8 +21,9 @@ class ListViewModel : AppCompatActivity() {
     private lateinit var listView: ListView
     private lateinit var itemsTable: ItemsTable
     private lateinit var addButton: Button
-    private var newItemName = "not pog"
+    private var newItemName = "error"
     private var newItemAmount = 1
+    private var newItemUnit = "pieces"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.list_view)
@@ -30,9 +31,9 @@ class ListViewModel : AppCompatActivity() {
 
         listView = findViewById<View>(R.id.itemListView) as ListView
         itemList = ArrayList<ListItem>()
-        itemList!!.add(ListItem("it1", 1))
-        itemList!!.add(ListItem("it2", 26564))
-        itemList!!.add(ListItem("it3", 359))
+        itemList!!.add(ListItem("it1", 1, "pieces"))
+        itemList!!.add(ListItem("it2", 26564, "kg"))
+        itemList!!.add(ListItem("it3", 359, "ml"))
         itemsTable = ItemsTable(itemList!!, applicationContext)
         listView.adapter = itemsTable
         listView.onItemClickListener = OnItemClickListener { _, _, position, _ ->
@@ -80,9 +81,9 @@ class ListViewModel : AppCompatActivity() {
                 DialogInterface.OnClickListener { dialog, which ->
                         newItemName = itemName.text.toString()
                         newItemAmount = itemAmount.text.toString().toInt()
-                        itemList!!.add(ListItem(newItemName, newItemAmount))
+                        newItemUnit = itemUnit.text.toString()
+                        itemList!!.add(ListItem(newItemName, newItemAmount, newItemUnit, false))
                         itemsTable.notifyDataSetChanged()
-
                 })
             builder.setNegativeButton("Cancel",
                 DialogInterface.OnClickListener { dialog, which -> dialog.cancel() })

@@ -1,6 +1,7 @@
 package com.pog
 
 import android.content.Context
+import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -34,8 +35,9 @@ class ItemsTable(val ItemsList: ArrayList<ListItem>, mContext: Context) :
         }
         val item: ListItem = ItemsList[position]
         row.rowTextView.text = item.Name
-        row.rowAmountView.text = item.Amount.toString()
+        row.rowAmountView.text = "${item.Amount} [${item.Unit}]"
         row.rowCheckBox.isChecked = item.IsBought
+
         return result
     }
 }
