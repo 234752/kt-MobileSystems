@@ -27,6 +27,17 @@ class ItemsTable(val ItemsList: ArrayList<ListItem>, mContext: Context) :
             row.rowTextView = convertView.findViewById(R.id.rowTextView)
             row.rowAmountView = convertView.findViewById(R.id.rowAmountView)
             row.rowCheckBox = convertView.findViewById(R.id.rowCheckBox)
+            row.rowCheckBox.setOnCheckedChangeListener { _, isChecked ->
+
+                val i = ItemsList[position]
+                i.IsBought = isChecked
+
+                if(isChecked) {
+                    row.rowTextView.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
+                } else {
+                    row.rowTextView.paintFlags = 0
+                }
+            }
             result = convertView
             convertView.tag = row
         } else {
