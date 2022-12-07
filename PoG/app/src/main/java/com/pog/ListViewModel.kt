@@ -11,6 +11,7 @@ import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.ListView
 import android.widget.Spinner
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
 
@@ -44,29 +45,36 @@ class ListViewModel : AppCompatActivity() {
         addButton.setOnClickListener {
 
             val builder: AlertDialog.Builder = android.app.AlertDialog.Builder(this)
-            builder.setTitle("Enter the name of item:")
-
 
             val view = LinearLayout(this)
             view.orientation = LinearLayout.VERTICAL
 
-
+            val itemNameLabel = TextView(this)
             val itemName = EditText(this)
+            val itemAmountLabel = TextView(this)
             val itemAmount = EditText(this)
+            val itemUnitLabel = TextView(this)
             val itemUnit = EditText(this)
             itemName.setRawInputType(InputType.TYPE_CLASS_TEXT)
             itemAmount.setRawInputType(InputType.TYPE_CLASS_NUMBER)
             itemUnit.setRawInputType(InputType.TYPE_CLASS_TEXT)
+            itemNameLabel.text = "Name of new item: "
+            itemAmountLabel.text = "Amount: "
+            itemUnitLabel.text = "Unit: "
+            itemNameLabel.textAlignment = View.TEXT_ALIGNMENT_CENTER
+            itemName.textAlignment = View.TEXT_ALIGNMENT_CENTER
+            itemAmountLabel.textAlignment = View.TEXT_ALIGNMENT_CENTER
+            itemAmount.textAlignment = View.TEXT_ALIGNMENT_CENTER
+            itemUnitLabel.textAlignment = View.TEXT_ALIGNMENT_CENTER
+            itemUnit.textAlignment = View.TEXT_ALIGNMENT_CENTER
+            view.addView(itemNameLabel)
             view.addView(itemName)
             view.addView(itemAmount)
             view.addView(itemUnit)
 
             itemAmount.setText("1")
             itemUnit.setText("pieces")
-
             builder.setView(view)
-
-
 
             builder.setPositiveButton("OK",
                 DialogInterface.OnClickListener { dialog, which ->
