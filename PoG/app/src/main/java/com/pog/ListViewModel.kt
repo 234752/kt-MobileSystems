@@ -1,12 +1,15 @@
 package com.pog
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView.OnItemClickListener
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
-import java.util.*
+
 
 class ListViewModel : AppCompatActivity() {
 
@@ -14,6 +17,8 @@ class ListViewModel : AppCompatActivity() {
     private lateinit var listView: ListView
     private lateinit var itemsTable: ItemsTable
     private lateinit var addButton: Button
+    private var newItemName = "not pog"
+    private var newItemAmount = 1
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.list_view)
@@ -34,10 +39,33 @@ class ListViewModel : AppCompatActivity() {
 
         addButton = findViewById<Button>(R.id.addButton) as Button
         addButton.setOnClickListener {
-            itemList!!.add(ListItem("new item", 123))
-            itemsTable.notifyDataSetChanged()
+
+            val builder: AlertDialog.Builder = android.app.AlertDialog.Builder(this)
+            builder.setTitle("Enter the name of item:")
+
+            builder.setView(R.layout.new_item_popup)
+            val view = builder.create()
+
+            val itemName = view.findViewById<EditText>(R.id.inputName)
+            val itemAmount = view.findViewById<EditText>(R.id.inputAmount)
+
+            builder.setPositiveButton("OK",
+                DialogInterface.OnClickListener { dialog, which ->
+                        newItemName = itemName.text.toString()
+                        //newItemAmount = itemAmount.text.toString().toInt()
+                        //itemList!!.add(ListItem("jj", 1))
+                        //itemsTable.notifyDataSetChanged()
+
+                })
+            builder.setNegativeButton("Cancel",
+                DialogInterface.OnClickListener { dialog, which -> dialog.cancel() })
+
+            builder.show()
+
         }
 
     }
+
+
 
 }
