@@ -31,13 +31,16 @@ class ListViewModel : AppCompatActivity() {
 
         listView = findViewById<View>(R.id.itemListView) as ListView
         itemList = ArrayList<ListItem>()
-        itemsTable = ItemsTable(itemList!!, applicationContext)
+        itemsTable = ItemsTable(itemList!!, this)
         listView.adapter = itemsTable
+
         listView.onItemClickListener = OnItemClickListener { _, _, position, _ ->
             val item: ListItem = itemList!![position] as ListItem
-            item.IsBought = !item.IsBought
+
+            //item.IsBought = !item.IsBought
             itemsTable.notifyDataSetChanged()
         }
+
 
         addButton = findViewById<Button>(R.id.addButton) as Button
         addButton.setOnClickListener {
@@ -67,7 +70,9 @@ class ListViewModel : AppCompatActivity() {
             itemUnit.textAlignment = View.TEXT_ALIGNMENT_CENTER
             view.addView(itemNameLabel)
             view.addView(itemName)
+            view.addView(itemAmountLabel)
             view.addView(itemAmount)
+            view.addView(itemUnitLabel)
             view.addView(itemUnit)
 
             itemAmount.setText("1")
