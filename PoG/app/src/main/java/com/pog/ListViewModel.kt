@@ -2,6 +2,7 @@ package com.pog
 
 import android.app.Activity
 import android.app.AlertDialog
+import android.content.ClipData.Item
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
@@ -11,8 +12,10 @@ import android.view.View
 import android.widget.*
 import android.widget.AdapterView.OnItemClickListener
 import androidx.appcompat.app.AppCompatActivity
+import androidx.room.Room
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import java.util.*
-import kotlin.collections.ArrayList
 
 
 class ListViewModel : AppCompatActivity() {
@@ -25,10 +28,22 @@ class ListViewModel : AppCompatActivity() {
     private var newItemName = "error"
     private var newItemAmount = 1
     private var newItemUnit = "pieces"
+    private lateinit var dbApp: DBApp
+    private lateinit var itemDao: ItemDao
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.list_view)
         title = "YOUR GROCERY LIST"
+        dbApp = DBApp()
+
+        var r = ItemDatabase.getDatabase(this)
+itemDao = r.itemDao()
+        GlobalScope.launch {
+
+            itemDao.insert(DBItem(0, "hmm", 12, "kg", "yes"))
+        }
+
 
         listView = findViewById<View>(R.id.itemListView) as ListView
         itemList = ArrayList<ListItem>()
@@ -166,4 +181,5 @@ class ListViewModel : AppCompatActivity() {
         }
         super.onActivityResult(requestCode, resultCode, data)
     }
+
 }
