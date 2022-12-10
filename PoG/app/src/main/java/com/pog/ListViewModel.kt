@@ -2,9 +2,9 @@ package com.pog
 
 import android.app.Activity
 import android.app.AlertDialog
-import android.content.ClipData.Item
 import android.content.DialogInterface
 import android.content.Intent
+import android.database.DataSetObserver
 import android.os.Bundle
 import android.speech.RecognizerIntent
 import android.text.InputType
@@ -12,7 +12,6 @@ import android.view.View
 import android.widget.*
 import android.widget.AdapterView.OnItemClickListener
 import androidx.appcompat.app.AppCompatActivity
-import androidx.room.Room
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.util.*
@@ -28,27 +27,35 @@ class ListViewModel : AppCompatActivity() {
     private var newItemName = "error"
     private var newItemAmount = 1
     private var newItemUnit = "pieces"
-    private lateinit var dbApp: DBApp
     private lateinit var itemDao: ItemDao
+    private lateinit var database: ItemDatabase
+    private lateinit var databaseItems: List<DBItem>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.list_view)
         title = "YOUR GROCERY LIST"
-        dbApp = DBApp()
 
-        var r = ItemDatabase.getDatabase(this)
-itemDao = r.itemDao()
-        GlobalScope.launch {
-
-            itemDao.insert(DBItem(0, "hmm", 12, "kg", "yes"))
-        }
-
+        var database = ItemDatabase.getDatabase(this)
+        itemDao = database.itemDao()
+        databaseItems = itemDao.getItems()
 
         listView = findViewById<View>(R.id.itemListView) as ListView
         itemList = ArrayList<ListItem>()
+        for(i in databaseItems) {
+            itemList!!.add(ListItem(i.Name, i.Amount,i.Unit, i.IsBought.toBoolean()))
+        }
+
+
         itemsTable = ItemsTable(itemList!!, this)
         listView.adapter = itemsTable
+
+        itemsTable.registerDataSetObserver(object : DataSetObserver() {
+            override fun onChanged() {
+                super.onChanged()
+                DatabaseMorbin()
+            }
+        })
 
         listView.onItemClickListener = OnItemClickListener { _, _, position, _ ->
             val item: ListItem = itemList!![position] as ListItem
@@ -99,7 +106,8 @@ itemDao = r.itemDao()
                         newItemName = itemName.text.toString()
                         newItemAmount = itemAmount.text.toString().toInt()
                         newItemUnit = itemUnit.text.toString()
-                        itemList!!.add(ListItem(newItemName, newItemAmount, newItemUnit, false))
+                    var newItem = ListItem(newItemName, newItemAmount, newItemUnit, false)
+                        itemList!!.add(newItem)
                         itemsTable.notifyDataSetChanged()
                 })
             builder.setNegativeButton("Cancel",
@@ -167,19 +175,25 @@ itemDao = r.itemDao()
                     newItemName = itemName.text.toString()
                     newItemAmount = itemAmount.text.toString().toInt()
                     newItemUnit = itemUnit.text.toString()
-                    itemList!!.add(ListItem(newItemName, newItemAmount, newItemUnit, false))
+                    var newItem = ListItem(newItemName, newItemAmount, newItemUnit, false)
+                    itemList!!.add(newItem)
                     itemsTable.notifyDataSetChanged()
                 })
             builder.setNegativeButton("Cancel",
                 DialogInterface.OnClickListener { dialog, which -> dialog.cancel() })
 
             builder.show()
-
-
-
-
         }
         super.onActivityResult(requestCode, resultCode, data)
+    }
+
+    fun DatabaseMorbin() {
+        GlobalScope.launch {
+            itemDao.dropTheMic()
+            for(item in itemList!!) {
+                itemDao.insert(DBItem(0, item.Name, item.Amount, item.Unit, item.IsBought.toString()))
+            }
+        }
     }
 
 }

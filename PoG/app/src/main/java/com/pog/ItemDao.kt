@@ -17,6 +17,9 @@ interface ItemDao {
     suspend fun delete(item: DBItem)
 
     @Query("SELECT * from item ORDER BY name ASC")
-    fun getItems(): Flow<List<DBItem>>
+    fun getItems(): List<DBItem>
+
+    @Query("DELETE from item")
+    fun dropTheMic()
 
 }
