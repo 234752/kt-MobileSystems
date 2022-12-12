@@ -68,6 +68,8 @@ class ItemsTable(val ItemsList: ArrayList<ListItem>, mContext: Context) :
                 itemAmount.textAlignment = View.TEXT_ALIGNMENT_CENTER
                 itemUnitLabel.textAlignment = View.TEXT_ALIGNMENT_CENTER
                 itemUnit.textAlignment = View.TEXT_ALIGNMENT_CENTER
+
+
                 view.addView(itemNameLabel)
                 view.addView(itemName)
                 view.addView(itemAmountLabel)
@@ -80,15 +82,23 @@ class ItemsTable(val ItemsList: ArrayList<ListItem>, mContext: Context) :
                 itemUnit.setText(i.Unit)
                 builder.setView(view)
 
-                builder.setPositiveButton("OK",
+                builder.setPositiveButton("Update  details",
                     DialogInterface.OnClickListener { dialog, which ->
                         i.Name = itemName.text.toString()
                         i.Amount = itemAmount.text.toString().toInt()
                         i.Unit = itemUnit.text.toString()
                         this.notifyDataSetChanged()
                     })
-                builder.setNegativeButton("Cancel",
+
+                builder.setNegativeButton("Remove item",
+                    DialogInterface.OnClickListener { dialog, which ->
+                        ItemsList.removeAt(position)
+                        notifyDataSetChanged()
+                        dialog.cancel() })
+
+                builder.setNeutralButton("Cancel",
                     DialogInterface.OnClickListener { dialog, which -> dialog.cancel() })
+
 
                 builder.show()
             }

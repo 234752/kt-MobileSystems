@@ -101,12 +101,12 @@ class ListViewModel : AppCompatActivity() {
             itemUnit.setText("pieces")
             builder.setView(view)
 
-            builder.setPositiveButton("OK",
+            builder.setPositiveButton("Add item",
                 DialogInterface.OnClickListener { dialog, which ->
                         newItemName = itemName.text.toString()
                         newItemAmount = itemAmount.text.toString().toInt()
                         newItemUnit = itemUnit.text.toString()
-                    var newItem = ListItem(newItemName, newItemAmount, newItemUnit, false)
+                        var newItem = ListItem(newItemName, newItemAmount, newItemUnit, false)
                         itemList!!.add(newItem)
                         itemsTable.notifyDataSetChanged()
                 })
@@ -170,7 +170,7 @@ class ListViewModel : AppCompatActivity() {
             itemUnit.setText("pieces")
             builder.setView(view)
 
-            builder.setPositiveButton("OK",
+            builder.setPositiveButton("Add item",
                 DialogInterface.OnClickListener { dialog, which ->
                     newItemName = itemName.text.toString()
                     newItemAmount = itemAmount.text.toString().toInt()
