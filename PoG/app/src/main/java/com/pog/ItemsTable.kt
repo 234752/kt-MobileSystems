@@ -18,7 +18,7 @@ class ItemsTable(val ItemsList: ArrayList<ListItem>, mContext: Context) :
         lateinit var rowTextView: TextView
         lateinit var rowAmountView: TextView
         lateinit var rowCheckBox: CheckBox
-        lateinit var rowEditButton: Button
+        lateinit var rowEditButton: ImageButton
     }
     override fun getView(position: Int, inputView: View?, parent: ViewGroup): View {
         var convertView = inputView
