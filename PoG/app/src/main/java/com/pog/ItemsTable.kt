@@ -1,6 +1,7 @@
 package com.pog
 
 import android.app.AlertDialog
+import android.content.ClipData.Item
 import android.content.Context
 import android.content.DialogInterface
 import android.graphics.Paint
@@ -11,6 +12,7 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import java.util.*
+import kotlin.collections.ArrayList
 
 class ItemsTable(val ItemsList: ArrayList<ListItem>, mContext: Context) :
     ArrayAdapter<ListItem>(mContext, R.layout.table_row_view, ItemsList) {
@@ -115,5 +117,27 @@ class ItemsTable(val ItemsList: ArrayList<ListItem>, mContext: Context) :
         row.rowCheckBox.isChecked = item.IsBought
 
         return result
+    }
+
+    fun sort() {
+
+        val sortedList: ArrayList<ListItem> = ArrayList<ListItem>()
+
+        for(item in ItemsList) {
+            if(!item.IsBought) {
+                sortedList.add(item)
+            }
+        }
+        for(item in ItemsList) {
+            if(item.IsBought) {
+                sortedList.add(item)
+            }
+        }
+
+        ItemsList.clear()
+        for(item in sortedList) {
+            ItemsList.add(item)
+        }
+        notifyDataSetChanged()
     }
 }

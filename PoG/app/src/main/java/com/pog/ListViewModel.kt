@@ -24,6 +24,7 @@ class ListViewModel : AppCompatActivity() {
     private lateinit var itemsTable: ItemsTable
     private lateinit var addButton: Button
     private lateinit var micButton: Button
+    private lateinit var sortButton: Button
     private var newItemName = "error"
     private var newItemAmount = 1
     private var newItemUnit = "pieces"
@@ -125,6 +126,11 @@ class ListViewModel : AppCompatActivity() {
             }
             // This starts the activity and populates the intent with the speech text.
             startActivityForResult(intent, 0)
+        }
+
+        sortButton = findViewById<Button>(R.id.sortButton) as Button
+        sortButton.setOnClickListener {
+            itemsTable.sort()
         }
     }
 
